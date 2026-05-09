@@ -1,12 +1,3 @@
----
-title: rag-multi-document-qna-system
-emoji: 🤖
-colorFrom: blue
-colorTo: purple
-sdk: docker
-pinned: false
----
-
 # 📚 RAG-Based Multi-Document QnA System
 
 A full-stack AI-powered document question-answering system that allows users to upload multiple PDFs and ask questions across them using Retrieval-Augmented Generation.
@@ -121,31 +112,204 @@ Cross-Encoder Reranking
 rag_multi_doc_qna/
 │
 ├── backend/
-│   ├── main.py
-│   ├── llm_service.py
-│   ├── retriever.py
-│   ├── vector_store.py
-│   ├── pdf_processor.py
-│   ├── text_splitter.py
+│   │
+│   ├── .env
+│   ├── .gitignore
 │   ├── document_tracker.py
+│   ├── llm_service.py
+│   ├── main.py
+│   ├── pdf_processor.py
 │   ├── requirements.txt
-│   ├── uploads/
-│   └── vector_db/
+│   ├── retriever.py
+│   ├── text_splitter.py
+│   └── vector_store.py
 │
 ├── frontend_nextjs/
+│   │
+│   ├── .next/
+│   ├── node_modules/
+│   ├── public/
+│   │
 │   ├── src/
 │   │   └── app/
+│   │       ├── favicon.ico
+│   │       ├── globals.css
+│   │       ├── layout.tsx
 │   │       └── page.tsx
+│   │
+│   ├── .gitignore
+│   ├── eslint.config.mjs
+│   ├── next-env.d.ts
+│   ├── next.config.ts
+│   ├── package-lock.json
 │   ├── package.json
-│   └── public/
+│   ├── postcss.config.mjs
+│   ├── README.md
+│   └── tsconfig.json
 │
 ├── frontend_streamlit/
 │
-├── screenshots/
-│   ├── dashboard.png
-│   ├── streaming.png
-│   └── sources.png
-│
+├── .gitattributes
 ├── .gitignore
 └── README.md
 
+---
+
+⚙️ Installation & Setup
+
+## 1️⃣ Clone Repository
+
+```bash
+git clone https://github.com/catonlsd/rag-multi-document-qna-system.git
+cd rag_multi_doc_qna
+```
+
+---
+
+2️⃣ Backend Setup
+
+Navigate to backend directory:
+
+cd backend
+
+Create virtual environment:
+---
+Windows
+python -m venv venv
+venv\Scripts\activate
+---
+Mac/Linux
+python3 -m venv venv
+source venv/bin/activate
+---
+Install dependencies:
+
+pip install -r requirements.txt
+---
+Create .env file:
+
+GROQ_API_KEY=YOUR_GROQ_API_KEY
+---
+Run backend server:
+
+python -m uvicorn main:app --reload
+---
+Backend runs at:
+
+http://127.0.0.1:8000
+
+---
+
+
+3️⃣ Frontend Setup
+
+Navigate to frontend:
+cd frontend_nextjs
+---
+Install dependencies:
+npm install
+---
+Run frontend:
+npm run dev
+---
+Frontend runs at:
+http://localhost:3000
+
+---
+
+🔌 API Endpoints
+
+GET /health
+Returns backend health status.
+---
+GET /stats
+Returns knowledge base statistics.
+---
+GET /documents
+Returns uploaded documents.
+---
+POST /upload
+Uploads and processes PDF documents.
+---
+POST /ask
+Generates contextual answers using RAG.
+Example Request
+{
+  "query": "Explain CI/CD in detail"
+}
+---
+POST /ask-stream
+Streams AI-generated answers token-by-token.
+---
+DELETE /reset
+Resets the vector database and uploaded documents.
+
+---
+
+
+💬 Example Queries
+1.Explain CI/CD in detail.
+2.What is Kubernetes?
+3.Compare Docker and Virtual Machines.
+4.Explain Retrieval-Augmented Generation.
+5.Summarize the uploaded DevOps document.
+
+---
+
+
+What are vector databases?
+🧠 AI Concepts Used
+Retrieval-Augmented Generation (RAG)
+Semantic Search
+Hybrid Retrieval
+Dense + Sparse Retrieval
+Cross-Encoder Reranking
+Conversational Context Injection
+Vector Databases
+Streaming LLM Responses
+
+---
+
+
+🔒 Hallucination Reduction Strategy
+The system reduces hallucinations using:
+
+document-grounded retrieval
+reranking
+prompt engineering
+contextual chunk selection
+source-based answering
+---
+The LLM is explicitly instructed to:
+
+answer only from retrieved context
+avoid assumptions
+mention insufficient information when necessary
+
+
+---
+
+📈 Future Improvements
+PDF preview viewer
+Citation click navigation
+Persistent chat history
+User authentication
+Multi-user support
+Docker deployment
+Cloud deployment
+OCR support for scanned PDFs
+Semantic caching
+Agentic RAG workflows
+Voice input support
+Multi-modal RAG
+
+---
+
+
+📄 Resume Description
+
+Built a full-stack AI-powered Retrieval-Augmented Generation (RAG) system using FastAPI, Next.js, FAISS, BM25, Sentence Transformers, and Groq LLM. Implemented semantic document retrieval, hybrid search, Cross-Encoder reranking, conversational memory, streaming AI responses, source citations, markdown rendering, and a responsive SaaS-style frontend interface for intelligent multi-document question answering.
+
+👨‍💻 Author
+
+Mokshit
