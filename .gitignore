@@ -1,0 +1,22 @@
+# Python
+backend/venv/
+backend/__pycache__/
+*.pyc
+
+# Secrets
+backend/.env
+
+# Local data
+backend/uploads/
+backend/vector_db/
+
+# Node
+frontend_nextjs/node_modules/
+frontend_nextjs/.next/
+frontend_nextjs/out/
+
+# Streamlit backup
+frontend_streamlit/venv/
+
+# OS
+.DS_Store
